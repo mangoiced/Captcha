@@ -1,0 +1,47 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <title>Progressive CAPTCHA</title>
+  <link rel="stylesheet" href="style.css">
+</head>
+<body>
+
+<h2>CAPTCHA Challenge</h2>
+
+<!-- Levels -->
+<div id="level1" class="level"></div>
+<div id="level2" class="level"></div>
+<div id="level3" class="level"></div>
+<div id="level4" class="level"></div>
+<div id="level5" class="level"></div>
+<div id="level6" class="level"></div>
+<div id="level7" class="level"></div>
+<div id="level8" class="level"></div>
+<div id="level9" class="level"></div>
+<div id="level10" class="level"></div>
+<!-- Add more levels here -->
+
+<!-- Scripts -->
+<script src="js/levelManager.js"></script>
+<script src="js/randomWord.js"></script>
+<script src="js/level1.js"></script>
+<script src="js/level2.js"></script>
+<script src="js/level3.js"></script>
+<script src="js/level4.js"></script>
+<script src="js/level5.js"></script>
+<script src="js/level6.js"></script>
+<script src="js/level7.js"></script>   
+<script src="js/level8.js"></script>
+<script src="js/level9.js"></script>
+<script src="js/level10.js"></script>
+
+<script>
+  // Wait until DOM is loaded
+  window.addEventListener('DOMContentLoaded', () => {
+    goToLevel(0);
+  });
+</script>
+
+</body>
+</html>

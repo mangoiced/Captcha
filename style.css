@@ -1,0 +1,574 @@
+/* =======================
+   Base & Page Styling
+======================= */
+html {
+  font-size: 18px; /* bigger base font */
+}
+
+body {
+  font-family: Arial, sans-serif;
+  margin: 0;
+  padding: 30px;
+  background-color: #f9f9f9;
+  color: #222;
+
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  min-height: 100vh;
+  text-align: center;
+  box-sizing: border-box;
+}
+
+/* Headings */
+h2 {
+  font-size: 2rem; /* larger heading */
+  margin-bottom: 20px;
+}
+
+h3 {
+  font-size: 1.75rem;
+  margin-bottom: 15px;
+}
+
+/* =======================
+   Level Containers
+======================= */
+.level {
+  display: none;          /* hidden by default */
+  max-width: 800px;       /* bigger width for all content */
+  width: 95%;             /* responsive */
+  margin: 20px auto;
+  opacity: 0;
+  transition: opacity 0.3s ease;
+  text-align: center;
+  position: relative;
+}
+
+.level.active {
+  display: block;
+  opacity: 1;
+}
+
+/* =======================
+   Level 1 & 2: CAPTCHA Canvas
+======================= */
+canvas {
+  display: block;
+  margin: 20px auto;
+  border: 2px solid #333;
+  border-radius: 6px;
+  background-color: #fff;
+  box-shadow: 2px 2px 10px rgba(0,0,0,0.1);
+  cursor: pointer;
+  max-width: 100%;
+  height: auto;
+}
+
+/* =======================
+   Inputs
+======================= */
+#fakeInput {
+  display: block;
+  margin: 15px auto;
+  width: 280px;      /* bigger input */
+  max-width: 90%;
+  font-size: 22px;
+  padding: 8px;
+  text-align: center;
+  border: 1px solid #888;
+  border-radius: 4px;
+  background-color: #eee;
+}
+
+/* =======================
+   Selected Letters & Messages
+======================= */
+#selected {
+  margin: 15px 0;
+  font-weight: bold;
+  letter-spacing: 3px;
+  font-size: 20px;
+  min-height: 28px;
+}
+
+#message, #message2, #message3 {
+  font-weight: bold;
+  margin-top: 15px;
+  min-height: 24px;
+  font-size: 18px;
+}
+
+/* =======================
+   Buttons
+======================= */
+.controls {
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: center;
+  gap: 10px;
+  margin-top: 15px;
+}
+
+.controls button,
+#verifyBtn {
+  margin: 5px;
+  padding: 8px 16px;
+  font-size: 16px;
+  border: none;
+  border-radius: 4px;
+  cursor: pointer;
+  transition: all 0.2s ease;
+}
+
+.controls button:hover,
+#verifyBtn:hover {
+  background-color: #0077cc;
+  color: #fff;
+  transform: translateY(-1px);
+}
+
+.controls button:active,
+#verifyBtn:active {
+  transform: translateY(1px);
+}
+
+/* =======================
+   Level 3: Loading Screen
+======================= */
+.loading-bar {
+  width: 100%;
+  height: 35px;       /* bigger */
+  border: 2px solid #00ff99;
+  border-radius: 10px;
+  overflow: hidden;
+  background: #1a1a1a;
+  margin: 15px auto;
+}
+
+.progress {
+  height: 100%;
+  width: 0%;
+  background: linear-gradient(90deg, #00ff99, #00ccff);
+  transition: width 0.05s linear;
+}
+
+.percent {
+  margin-top: 15px;
+  font-size: 1.2rem;
+  color: #00ffcc;
+}
+
+.blinking {
+  animation: blinkRed 1s infinite;
+}
+
+@keyframes blinkRed {
+  0%, 50%, 100% { background: #ff0000; }
+  25%, 75% { background: #330000; }
+}
+
+.close-btn {
+  position: absolute;
+  top: 10px;
+  right: 15px;
+  font-size: 28px;
+  font-weight: bold;
+  color: #ff5555;
+  cursor: pointer;
+  user-select: none;
+}
+
+/* =======================
+   Level 4: Equation Image
+======================= */
+#level4 p {
+  font-size: 22px;
+  line-height: 1.5;
+  white-space: nowrap; /* prevent line break */
+  text-align: center;
+}
+
+#level4 img#equationImg {
+  width: 90vw;    /* large, nearly full viewport */
+  max-width: 900px; 
+  height: auto;
+  display: block;
+  margin: 0 auto;
+}
+
+/* =======================
+   Level 5: Flower Puzzle
+======================= */
+#level5 .puzzle {
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+  gap: 6px;
+  max-width: 500px; /* bigger grid */
+  margin: 20px auto;
+}
+
+#level5 .tile {
+  width: 100%;
+  padding-top: 100%; /* square tiles */
+  background-repeat: no-repeat;
+  cursor: pointer;
+  transition: transform 0.3s;
+  position: relative;
+}
+
+#level5 #verifyBtn {
+  margin-top: 15px;
+  padding: 8px 16px;
+  font-size: 16px;
+}
+
+#level5 #status {
+  margin-top: 12px;
+  font-weight: bold;
+  min-height: 22px;
+  font-size: 18px;
+}
+
+/* =======================
+   Level 6: Emoji Click Game
+======================= */
+#level6 {
+  position: relative;
+  width: 100%;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+}
+
+#level6 #gameArea {
+  position: relative;
+  width: 900px;       /* adjust to scale */
+  height: 600px;
+  border: 4px solid #00ff99;
+  background: #fff;
+  overflow: hidden;
+  margin: 0 auto;
+  transition: border-color 0.3s;
+}
+
+#level6 .emoji {
+  position: absolute;
+  font-size: 50px;
+  cursor: pointer;
+  user-select: none;
+}
+
+#level6 #lives {
+  position: absolute;
+  top: 10px;
+  left: 10px;
+  font-size: 24px;
+  color: #00aa00;
+}
+
+#level6 #gameMessage {
+  position: absolute;
+  top: 50%;
+  width: 100%;
+  text-align: center;
+  font-size: 48px;
+  color: red;
+  display: none;
+}
+
+#level6.blink-red #gameArea {
+  border-color: red !important;
+}
+
+/* Responsive adjustments */
+@media screen and (max-width: 1000px) {
+  #level6 #gameArea {
+    width: 90%;
+    height: auto;
+  }
+  #level6 .emoji {
+    font-size: 35px;
+  }
+  #level6 #lives {
+    font-size: 18px;
+  }
+  #level6 #gameMessage {
+    font-size: 36px;
+  }
+}
+/* =======================
+   Level 7 CAPTCHA
+======================= */
+#level7 .puzzle {
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+  gap: 2px;
+  max-width: 60vw;
+  margin: 10px auto;
+}
+
+#level7 .tile-input,
+#level7 #trick { display: none; }
+
+#level7 .tile {
+  width: 100%;
+  padding-top: 100%;
+  background-image: url('images/stop_sign.webp');
+  background-size: 300% 300%;
+  background-repeat: no-repeat;
+  cursor: pointer;
+  border-radius: 6px;
+  border: 2px solid transparent;
+  transition: transform 0.2s, border 0.2s;
+  position: relative;
+}
+
+#level7 .tile-input:checked + .tile {
+  transform: scale(0.94);
+  border-color: #3b82f6;
+}
+
+#level7 .t0 { background-position: 0% 0%; }
+#level7 .t1 { background-position: 50% 0%; }
+#level7 .t2 { background-position: 100% 0%; }
+#level7 .t3 { background-position: 0% 50%; }
+#level7 .t4 { background-position: 50% 50%; }
+#level7 .t5 { background-position: 100% 50%; }
+#level7 .t6 { background-position: 0% 100%; }
+#level7 .t7 { background-position: 50% 100%; }
+#level7 .t8 { background-position: 100% 100%; }
+
+#level7 .instruction {
+  display: inline-block;
+  margin-top: 8px;
+  padding: 8px 12px;
+  border: 2px solid #d1d5db;
+  border-radius: 8px;
+  cursor: pointer;
+  font-weight: bold;
+  font-size: 1.4vw;
+  transition: 0.2s;
+}
+
+#level7 #trick:checked + .instruction {
+  border-color: #10b981;
+  background: #ecfdf5;
+  color: #065f46;
+}
+
+#level7 .check-btn {
+  display: inline-block;
+  margin-top: 15px;
+  padding: 0.6vw 1.2vw;
+  border-radius: 8px;
+  background: #3b82f6;
+  color: white;
+  font-size: 1.4vw;
+  font-weight: bold;
+  cursor: pointer;
+  border: none;
+  transition: background 0.2s;
+}
+
+#level7 .check-btn:hover { background: #2563eb; }
+
+#level7 .result {
+  margin-top: 18px;
+  font-size: 1.4vw;
+  font-weight: bold;
+  display: none;
+}
+
+#level7 .success { color: #065f46; }
+#level7 .fail { color: #dc2626; }
+
+/* =======================
+   Level 8 CAPTCHA
+======================= */
+#level8 .puzzle {
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+  gap: 4px;
+  max-width: 90vw;
+  margin: 20px auto;
+}
+
+#level8 .tile-input { display: none; }
+
+#level8 .tile {
+  width: 100%;
+  padding-top: 100%;  /* square tiles */
+  background-image: url('images/intersection_cars.webp');
+  background-size: 300% 300%; /* 3x3 grid */
+  background-repeat: no-repeat;
+  cursor: pointer;
+  border-radius: 8px;
+  border: 3px solid transparent;
+  transition: transform 0.2s, border 0.2s;
+  position: relative;
+}
+
+#level8 .tile-input:checked + .tile {
+  transform: scale(0.95);
+  border-color: #3b82f6;
+}
+
+#level8 .t0 { background-position: 0% 0%; }
+#level8 .t1 { background-position: 50% 0%; }
+#level8 .t2 { background-position: 100% 0%; }
+#level8 .t3 { background-position: 0% 50%; }
+#level8 .t4 { background-position: 50% 50%; }
+#level8 .t5 { background-position: 100% 50%; }
+#level8 .t6 { background-position: 0% 100%; }
+#level8 .t7 { background-position: 50% 100%; }
+#level8 .t8 { background-position: 100% 100%; }
+
+
+#level8 .check-btn:hover { background: #2563eb; }
+
+#level8 .result {
+  margin-top: 25px;
+  font-size: 2vw;  /* responsive */
+  font-weight: bold;
+  display: none;
+}
+
+#level8 .success { color: #065f46; }
+#level8 .fail { color: #dc2626; }
+
+/* Optional: rotate entire level for fun */
+#level8 form {
+  transform: rotate(180deg);
+  transform-origin: center center;
+  transition: transform 0.8s ease;
+}
+
+/* =======================
+   Level 8 CAPTCHA
+======================= */
+.level9-body {
+  margin: 0;
+  font-family: Arial, sans-serif;
+  background: linear-gradient(to bottom, #87CEFA, #ffffff);
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  height: 100vh;
+  overflow: hidden;
+}
+
+canvas {
+  background: #f0f8ff;
+  border: 3px solid #333;
+  border-radius: 15px;
+}
+
+.level9-score {
+  margin-top: 10px;
+  font-size: 24px;
+  font-weight: bold;
+  color: #333;
+}
+
+.level9-typingArea {
+  margin-top: 20px;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+}
+
+#typingInput {
+  padding: 8px 12px;
+  font-size: 18px;
+  border-radius: 8px;
+  border: 2px solid #333;
+  outline: none;
+  width: 120px;
+  text-align: center;
+}
+
+.level9-message {
+  margin-top: 8px;
+  font-size: 16px;
+  color: #333;
+}
+
+/* =======================
+   Level 10: I'm not a robot
+======================= */
+#level10 .preference {
+  background: #ffffffe3;
+  padding: 24px 50px;
+  border-radius: 0;
+  box-shadow: 0 1px 1px rgba(7, 0, 0, 0);
+  display: flex;
+  align-items: center;
+  gap: 16px;
+  justify-content: center;
+  flex-wrap: wrap;
+}
+
+#level10 .preference label {
+  font-size: 1.5rem;
+  font-weight: bold;
+}
+
+#level10 .virus-btn {
+  width: 25px;
+  height: 25px;
+  border: 1px solid #000000;
+  border-radius: 0;
+  background: #f9fafb;
+  cursor: pointer;
+  position: relative;
+  transition: all 0.1s ease;
+}
+
+#level10 .virus-btn:hover {
+  border-color: #2563eb;
+  background: #eff6ff;
+}
+
+#level10 .virus-btn.clicked::after {
+  content: "✓";
+  color: #031e78;
+  font-weight: bold;
+  font-size: 1rem;
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+}
+
+/* Responsive adjustments */
+@media screen and (max-width: 600px) {
+  #level10 .preference {
+    padding: 20px 30px;
+    gap: 12px;
+  }
+  #level10 .preference label {
+    font-size: 1.2rem;
+  }
+  #level10 .virus-btn {
+    width: 20px;
+    height: 20px;
+  }
+}
+
+
+/* =======================
+   Responsive Adjustments
+======================= */
+@media screen and (max-width: 600px) {
+  h2 { font-size: 1.8rem; }
+  h3 { font-size: 1.5rem; }
+  #fakeInput { width: 90%; font-size: 20px; }
+  canvas { width: 95%; height: auto; }
+  .controls button, #verifyBtn { font-size: 14px; padding: 6px 12px; }
+  .loading-bar { height: 28px; }
+  .percent { font-size: 1rem; }
+  #level5 .puzzle { max-width: 90%; gap: 4px; }
+}
